@@ -1,0 +1,31 @@
+# This is the first real CI workflow in the course.
+# It verifies a change by running tests on a fresh runner.
+name: task.yml
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  trivy_scan:
+  
+
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+      - name: install trivy 
+        run: sudo apt-get install trivy
+      - name: check trivy is installed 
+        run: trivy --version
+
+      - name: check fs
+        run: trivy fs . 
+      - name: check docker file 
+        run: trivy config dockerfile 
+
+
+
