@@ -20,7 +20,7 @@ jobs: # here define jobs ,
   say-hello: # first job 
 
     # GitHub provides a fresh runner for the job.
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true # if the all code inside this vm merged run the pipe line 
     runs-on: ubuntu-latest # this job runs on vm ubu-linux 
 
     steps: # here define steps(install tools for build or docker for build image )
