@@ -26,18 +26,35 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+
       - name: install trivy 
         run: sudo apt-get install trivy
+
       - name: check trivy is installed 
         run: trivy --version
 
       - name: check fs
         run: trivy fs . 
+
       - name: check docker file 
         run: trivy config Dockerfile 
 
-      # - name : install ruff 
-      #   run: 
+      - name : install python to install ruff 
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      
+      - name: validate python version
+        run: python --version
+
+      - name: install ruff 
+        run : pip install ruff
+
+      - name: check ruff 
+        run: ruff --version
+
+      - name: do lint with ruff 
+        run : ruff check .
 
 
 
