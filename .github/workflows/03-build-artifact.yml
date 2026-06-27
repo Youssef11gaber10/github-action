@@ -25,9 +25,11 @@ jobs:
 
       - name: Set up Python
         # Prepare Python so the workflow can run the tests first.
+        env:
+          PYTHON_VERSION: "3.12"
         uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
+          python-version: "${{ env.PYTHON_VERSION }}"
 
       - name: Run tests
         # Build only after the verification step passes.
