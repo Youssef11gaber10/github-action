@@ -12,13 +12,15 @@ on: # here define triggers
 
   pull_request:
     types:
-      - opened
+      - closed
     branches:
       - main
 
 jobs: # here define jobs ,
   say-hello: # first job 
+
     # GitHub provides a fresh runner for the job.
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest # this job runs on vm ubu-linux 
 
     steps: # here define steps(install tools for build or docker for build image )
