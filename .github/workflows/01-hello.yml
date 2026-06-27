@@ -18,4 +18,7 @@ jobs: # here define jobs ,
     steps: # here define steps(install tools for build or docker for build image )
       - name: Say hello # first step 
         # This single step is enough to show a full workflow run.
-        run: echo "Hello from GitHub Actions" # here you run natively on vm 
+        run: |
+          echo "Hello from GitHub Actions" # here you run natively on vm 
+          which docker 
+          docker --version
