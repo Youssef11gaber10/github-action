@@ -37,7 +37,7 @@ jobs:
         uses: actions/setup-python@v6
         with:
           # python-version: ${{env.PYTHON_VERSION}}
-          python-version: ${{ secret.PYTHON_VERSION }}
+          python-version: ${{ secrets.PYTHON_VERSION }}
 
           
       - name : validate python is installed 
