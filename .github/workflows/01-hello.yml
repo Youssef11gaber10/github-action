@@ -22,4 +22,4 @@ jobs: # here define jobs ,
           echo "Hello from GitHub Actions" # here you run natively on vm 
           which docker 
           docker --version
-          docker ps 
+          docker run hello-world 
