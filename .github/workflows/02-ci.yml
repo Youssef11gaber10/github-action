@@ -5,7 +5,7 @@ name: 02 CI Workflow
 on:
   # Run automatically when app code, tests, or this workflow file changes.
   push:
-    paths:
+    paths: # trigger when push on these pathes 
       - "app/**"
       - "tests/**"
       - ".github/workflows/02-ci.yml"
@@ -18,16 +18,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Check out repository # name of the step
         # Download the repository contents onto the runner.
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6 # use this actions to clone the repo inside the vm
+        # it will clone code from repo of that .yml file on it to inside vm 
+      - name: validate code is cloned 
+        run: |
+          ls -R # list the files in the repo
 
+        
       - name: Set up Python
         # Prepare Python on the runner. This does not change the student laptop.
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-
+      - name : validate python is installed 
+        run : |
+          python --version
       - name: Run tests
         # This is the key verification step in the CI workflow.
         run: python -m unittest discover -s tests -v
