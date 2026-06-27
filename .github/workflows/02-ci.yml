@@ -32,9 +32,11 @@ jobs:
         
       - name: Set up Python
         # Prepare Python on the runner. This does not change the student laptop.
+        env :
+          PYTHON_VERSION: "3.12"
         uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
+          python-version: "@{env.PYTHON_VERSION}"
       - name : validate python is installed 
         run : |
           python --version
