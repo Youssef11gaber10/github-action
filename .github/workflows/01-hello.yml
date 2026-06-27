@@ -4,15 +4,23 @@ name: 01 Hello Workflow # define name of the job
 
 on: # here define triggers
   # Run automatically when this workflow file changes.
-  push: # 
-    paths:
-      - ".github/workflows/01-hello.yml"
+  # push: # 
+    # paths:
+    #   - ".github/workflows/01-hello.yml"
   # Allow a safe manual run from the Actions tab too.
   workflow_dispatch:
 
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
 jobs: # here define jobs ,
   say-hello: # first job 
+
     # GitHub provides a fresh runner for the job.
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest # this job runs on vm ubu-linux 
 
     steps: # here define steps(install tools for build or docker for build image )
