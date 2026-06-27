@@ -1,21 +1,21 @@
 # This first workflow is intentionally tiny.
 # It helps students see what a GitHub Actions run looks like.
-name: 01 Hello Workflow
+name: 01 Hello Workflow # define name of the job 
 
-on:
+on: # here define triggers
   # Run automatically when this workflow file changes.
-  push:
+  push: # 
     paths:
       - ".github/workflows/01-hello.yml"
   # Allow a safe manual run from the Actions tab too.
   workflow_dispatch:
 
-jobs:
-  say-hello:
+jobs: # here define jobs ,
+  say-hello: # first job 
     # GitHub provides a fresh runner for the job.
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # this job runs on vm ubu-linux 
 
-    steps:
-      - name: Say hello
+    steps: # here define steps(install tools for build or docker for build image )
+      - name: Say hello # first step 
         # This single step is enough to show a full workflow run.
-        run: echo "Hello from GitHub Actions"
+        run: echo "Hello from GitHub Actions" # here you run natively on vm 
