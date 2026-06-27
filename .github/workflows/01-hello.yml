@@ -4,7 +4,7 @@ name: 01 Hello Workflow # define name of the job
 
 on: # here define triggers
   # Run automatically when this workflow file changes.
-  push: # 
+  # push: # 
     # paths:
     #   - ".github/workflows/01-hello.yml"
   # Allow a safe manual run from the Actions tab too.
