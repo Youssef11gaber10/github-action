@@ -75,7 +75,7 @@ jobs:
         run: docker load -i task-img-artifact.tar
 
       - name: Scan loaded image
-        run: trivy image task-img-artifact
+        run: trivy image task-img
 
 
 
