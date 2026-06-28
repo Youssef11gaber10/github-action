@@ -1,6 +1,6 @@
 # This is the first real CI workflow in the course.
 # It verifies a change by running tests on a fresh runner.
-name: task.yml
+name: task2.yml
 
 env:
   CONTAINER_NAME: my-task-container
