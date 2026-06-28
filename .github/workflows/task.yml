@@ -58,6 +58,9 @@ jobs:
 
       - name: build docker file 
         run : docker build -t task-img .
+      
+      - name: Scan Docker image
+        run: trivy image task-img
 
       - name: save docker image 
         run : docker save task-img -o task-img.tar
@@ -67,6 +70,15 @@ jobs:
         with:
           name: task-img-artifact
           path: task-img.tar
+      
+      - name: Load Docker image
+        run: docker load -i task-img.tar
+
+      - name: Scan loaded image
+        run: trivy image task-img
+
+
+        
 
 
 
