@@ -2,6 +2,10 @@
 # It verifies a change by running tests on a fresh runner.
 name: task.yml
 
+env:
+  CONTAINER_NAME: my-task-container
+  APP_PORT: "8000"
+
 on:
   workflow_dispatch:
 
@@ -104,6 +108,30 @@ jobs:
       - name: push to our repo on ecr 
         run : docker push  767196576807.dkr.ecr.eu-north-1.amazonaws.com/task-img:latest
 
+      - name: Start container FROM IMAGE ON ECR
+        run: |
+          docker run -d \
+            --name "${CONTAINER_NAME}" \
+            -p "${APP_PORT}:8000" \
+            767196576807.dkr.ecr.eu-north-1.amazonaws.com/task-img:latest
+
+      - name: Smoke test deployed app
+        # Retry a few times because app startup can take a moment.
+        run: |
+          for attempt in 1 2 3 4 5; do
+            if curl --fail --silent "http://127.0.0.1:${APP_PORT}/health"; then
+              exit 0
+            fi
+            echo "Waiting for app to become ready..."
+            sleep 2
+          done
+          echo "App did not become ready in time."
+          exit 1
+
+      - name: Stop container
+        if: always()
+        # Clean up even if an earlier step fails.
+        run: docker rm -f "${CONTAINER_NAME}" || true
 
 
 
