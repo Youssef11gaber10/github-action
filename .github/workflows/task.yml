@@ -129,7 +129,7 @@ jobs:
           exit 1
 
       - name: Stop container
-        if: always()
+        if: always() # can be failed ,sucess or cancelled -> if all steps before success trigger this step , or one failed trigger this step ,or always either success or fail 
         # Clean up even if an earlier step fails.
         run: docker rm -f "${CONTAINER_NAME}" || true
 
