@@ -63,22 +63,22 @@ jobs:
         run: trivy image task-img
 
       - name: save docker image 
-        run : docker save task-img -o task-img.tar
+        run : docker save task-img -o task-img-artifact.tar
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: task-img-artifact
-          path: task-img.tar
+          path: task-img-artifact.tar
       
       - name: Load Docker image
-        run: docker load -i task-img.tar
+        run: docker load -i task-img-artifact.tar
 
       - name: Scan loaded image
-        run: trivy image task-img
+        run: trivy image task-img-artifact
 
 
-        
+
 
 
 
