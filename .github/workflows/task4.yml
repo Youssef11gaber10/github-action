@@ -20,7 +20,7 @@ on:
       - main
 
 jobs:
-  ci:
+  ci-job:
   
 
     # runs-on: ubuntu-latest
