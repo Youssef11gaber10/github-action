@@ -7,6 +7,7 @@ env:
   CONTAINER_NAME: my-task-container
   APP_PORT: "8000"
   EC2_HOST: 13.53.144.66
+  PYTHON_VERSION: "3.8"
 
 on:
   workflow_dispatch: # or run manually
