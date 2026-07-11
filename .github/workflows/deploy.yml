@@ -18,7 +18,7 @@ on:
 
 jobs:    
   deploy:
-    if: ${{ github.pull_request.merged == 'success' }} # here make sure there merge happen or don't run the job 
+    if: ${{ github.event.pull_request.merged == true }} # here make sure there merge happen or don't run the job 
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
