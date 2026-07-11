@@ -8,6 +8,7 @@ env:
   APP_PORT: "8000"
   EC2_HOST: 13.53.144.66
 
+
 on:
   workflow_dispatch: # or run manually
 
