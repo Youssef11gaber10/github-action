@@ -1,9 +1,10 @@
+# i will make container and do smoke test on it on ci runner
 name: deploy
 
 env:
   CONTAINER_NAME: my-task-container
   APP_PORT: "8000"
-  EC2_HOST: 13.53.144.66
+  # EC2_HOST: 13.53.144.66
 
 on:
   workflow_dispatch:
@@ -17,7 +18,7 @@ on:
 
 jobs:    
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }} # here make sure there merge happen or don't run the job 
+    if: ${{ github.pull_request.merged == 'success' }} # here make sure there merge happen or don't run the job 
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
